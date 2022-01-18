@@ -62,7 +62,9 @@
 
          syntax-local-expand-observer
          
-         syntax-local-get-shadower)
+         syntax-local-get-shadower
+
+         generate-bound-temporary)
 
 ;; ----------------------------------------
 
@@ -483,3 +485,11 @@
   (if (syntax-clean? id)
       new-id
       (syntax-taint new-id)))
+
+;; ----------------------------------------
+
+(define/who (generate-bound-temporary id)
+  (check who identifier? id)
+  (define new-id (add-scope id (new-scope 'macro)))
+  (add-local-binding! new-id (syntax-local-phase-level) (box 0) #:local-sym 'tmp)
+  new-id)

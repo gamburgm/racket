@@ -142,6 +142,8 @@
                       make-interned-syntax-introducer
                       make-syntax-delta-introducer
                       syntax-local-make-delta-introducer
+
+                      generate-bound-temporary
                       
                       (protect syntax-local-value)
                       (protect syntax-local-value/immediate)
